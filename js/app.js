@@ -12,7 +12,7 @@ Create tamagotchi class
         Play
         AgeUp
 
-Game Passive Function
+Game Passive Functions
     Create timer that game runs on
         after x sec
             After y min increase age by one
@@ -32,7 +32,7 @@ Game Passive Function
                 - "died of sleep deprivation"
             boredom = 10
                 - "$name got bored and left home to pursue its dreams never to be seen again"
-        Optional: After x sec/min create new tamagotchi and reset game (Baby)
+        Optional: After x sec/min create new tamagotchi and reset game
 
 Game Player Input
     Start w/ giving pet a name
