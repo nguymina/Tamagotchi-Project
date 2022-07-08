@@ -52,7 +52,6 @@ Game Player Input
 class Tamagotchi {
     constructor(name) {
         this.name = name;
-        this.age = 0;
         this.status = "Egg";
         this.hunger = 0;
         this.sleepiness = 0;
@@ -78,59 +77,89 @@ class Tamagotchi {
     };
     getBored () {
         this.boredom += 1;
-    }
-    ageUp () {
-        this.age += 1;
     };
     // Add clean, buy meds, make money??
 };
 
+// Stored locations for DOMs
+    //Attributes
+// let hungerNum = document.querySelector("#hunger");
+// let sleepinessNum = document.querySelector("#sleepiness");
+// let boredomNum = document.querySelector("#boredom");
+// let ageNum = document.querySelector("#age");
+// let namer = document.getElementById("values");
+
+// console.log(namer);
+
+
 //Test Tamagotchi + Name input
+
+console.log("connected?");
+// let tama1 = new Tamagotchi("tama1");
+// console.log (tama1)
 
 //add button for start game pop up prompt
 const startGame = () => {
     let nameThis = prompt("What's my name?");
     tama1 = new Tamagotchi(nameThis);
+    // namer.textContent = nameThis;
+    timeElapsed();
 };
 
 
-//Time 
+//Display
+const updateValues = () => {
+    //Hunger
+    let textHunger = ("Hunger: " + tama1.hunger);
+    hungerNum.textContent = textHunger;
+};
 
 //setTimeOut or setInterval or maybe just for loop?
+
 let time = 0;
 
 const timeElapsed = () => {
-    time += 1;
+    setInterval(() =>{
+        time ++
+        console.log(time);
+        console.log(tama1);
+        timePassing();
+    }, 500);
 };
 
 const timePassing = () => {
-    setInterval(timeElapsed(), 1000);
-
     //Increase values based on time
     if (time % 10 === 0) {
-        getBored();
-        getHungry();
-    };
+        tama1.getBored();
+        tama1.getHungry();
+    }
     if (time % 20 === 0) {
-        getSleepy();
+        tama1.getSleepy();
     };
 
     //Stages of growth
-    if (time === 120) {
+    if (time === 20) {
         tama1.status = "Child";
     }
-    if (time === 300) {
+    if (time === 30) {
         tama1.status = "Teenager";
     }
-    if (time === 600) {
+    if (time === 60) {
         tama1.status = "Adult";
     };
-    if (time === 900) {
-        tama1.status = "Dead";
+    if (time === 90) {
+        tama1.status = "Died of old age";
+        alert("Your pet died of old age, but left an egg!");
+        startGame();
         //create Death + reset game function
     };
-
+    
 };
 
 
+
 // setInterval only works passes one function, so multiple set interval functions are needed
+
+
+
+
