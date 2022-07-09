@@ -52,7 +52,7 @@ Game Player Input
 class Tamagotchi {
     constructor(name) {
         this.name = name;
-        this.status = "Egg";
+        this.age = "Egg";
         this.hunger = 0;
         this.sleepiness = 0;
         this.boredom = 0;
@@ -87,7 +87,7 @@ let namer = document.createElement("h2");
     namer.textContent = "Name";
     document.body.appendChild(namer);
 
-
+//Attribute Display
 let attributes = document.createElement("section");
     attributes.id = "attributes";
     document.body.appendChild(attributes);
@@ -113,14 +113,27 @@ let boredomNum = document.createElement("p");
 let ageNum = document.createElement("p");
     ageNum.id = "age";
     ageNum.className = "attribute";
-    ageNum.textContent = ("Age: 0");
+    ageNum.textContent = ("Age: Egg");
     attributes.appendChild(ageNum);
+
+
+// Sprite
+let sprite = document.createElement("img");
+    sprite.id = "sprite";
+    sprite.setAttribute("src", "img/Snail egg.gif");
+    document.body.appendChild(sprite);
+//Buttons
+
 
 // Update Values
 
 const updateValues = () => {
     hungerNum.textContent = ("Hunger: " + tama1.hunger);
+    sleepinessNum.textContent = ("Sleepiness: " + tama1.sleepiness);
+    boredomNum.textContent = ("Boredom: " + tama1.boredom);
+    ageNum.textContent = ("Age: " + tama1.age);
 };
+
 
 
 //Test Tamagotchi + Name input
@@ -129,7 +142,7 @@ console.log("connected?");
 // let tama1 = new Tamagotchi("tama1");
 // console.log (tama1)
 
-//add button for start game pop up prompt
+//Start Game
 const startGame = () => {
     let nameThis = prompt("What's my name?");
     tama1 = new Tamagotchi(nameThis);
@@ -138,12 +151,6 @@ const startGame = () => {
 };
 
 
-//Display
-// const updateValues = () => {
-//     //Hunger
-//     let textHunger = ("Hunger: " + tama1.hunger);
-//     hungerNum.textContent = textHunger;
-// };
 
 //setTimeOut or setInterval or maybe just for loop?
 
@@ -155,7 +162,7 @@ const timeElapsed = () => {
         console.log(time);
         console.log(tama1);
         timePassing();
-    }, 500);
+    }, 1000);
 };
 
 const timePassing = () => {
@@ -167,20 +174,28 @@ const timePassing = () => {
     }
     if (time % 20 === 0) {
         tama1.getSleepy();
+        updateValues();
     };
 
     //Stages of growth
     if (time === 20) {
-        tama1.status = "Child";
+        tama1.age = "Child";
+        updateValues();
+        sprite.setAttribute("src", "img/Child snail.gif");
     }
     if (time === 30) {
-        tama1.status = "Teenager";
+        tama1.age = "Teenager";
+        updateValues();
+        sprite.setAttribute("src", "img/Teen snail.gif");
     }
     if (time === 60) {
-        tama1.status = "Adult";
+        tama1.age = "Adult";
+        updateValues();
+        sprite.setAttribute("src", "img/Adult Snail.gif");
     };
     if (time === 90) {
-        tama1.status = "Died of old age";
+        tama1.age = "Died of old age";
+        updateValues();
         alert("Your pet died of old age, but left an egg!");
         startGame();
         //create Death + reset game function
