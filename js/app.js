@@ -59,11 +59,11 @@ class Tamagotchi {
         this.sprite = "img/Snail egg.gif";
     };
     returnOriSprite () {
-        action.setAttribute("src", "https://gfycat.com/sophisticatedwelltodobluetonguelizard");
+        action.setAttribute("src", "https://thumbs.gfycat.com/SophisticatedWelltodoBluetonguelizard.webp");
     }
     eatUp () {
         this.hunger = 0;
-        action.setAttribute("src", "https://gfycat.com/lawfulsereneflamingo");
+        action.setAttribute("src", "https://thumbs.gfycat.com/LawfulSereneFlamingo.webp");
         setTimeout(this.returnOriSprite, 1990);
     };
     getHungry () {
@@ -71,7 +71,7 @@ class Tamagotchi {
     };
     sleepPls () {
         this.sleepiness = 0;
-        action.setAttribute("src", "https://gfycat.com/mealybowedbuck");
+        action.setAttribute("src", "https://thumbs.gfycat.com/MealyBowedBuck.webp");
         setTimeout(this.returnOriSprite, 1990);
     };
     getSleepy () {
@@ -79,7 +79,7 @@ class Tamagotchi {
     };
     playBall () {
         this.boredom = 0;
-        action.setAttribute("src", "https://gfycat.com/plumpultimateclingfish");
+        action.setAttribute("src", "https://thumbs.gfycat.com/PlumpUltimateClingfish.webp");
         setTimeout(this.returnOriSprite, 1990);
     };
     getBored () {
@@ -167,19 +167,19 @@ const timePassing = () => {
         tama1.age = "Child";
         tama1.sprite = "img/Child snail.gif";
         updateValues();
-        sprite.setAttribute("src", "https://gfycat.com/raggedblankbadger");
+        sprite.setAttribute("src", "https://thumbs.gfycat.com/RaggedBlankBadger.webp");
     }
     if (time === 30) {
         tama1.age = "Teenager";
         tama1.sprite = "img/Teen snail.gif";
         updateValues();
-        sprite.setAttribute("src", "https://gfycat.com/questionablewideeyedhoatzin");
+        sprite.setAttribute("src", "https://thumbs.gfycat.com/QuestionableWideeyedHoatzin.webp");
     }
     if (time === 60) {
         tama1.age = "Adult";
         tama1.sprite = "img/Adult Snail.gif";
         updateValues();
-        sprite.setAttribute("src", "https://gfycat.com/constantdefenselessdwarfmongoose");
+        sprite.setAttribute("src", "https://thumbs.gfycat.com/ConstantDefenselessDwarfmongoose.webp");
     };
     if (time === 120) {
         tama1.age = "Died of old age";
@@ -207,7 +207,7 @@ const resetGame = () => {
     tama1.sleepiness = 0;
     tama1.boredom = 0;
     tama1.sprite = "img/Snail egg.gif";
-    sprite.setAttribute("src", "https://gfycat.com/powerlessopulentdutchshepherddog");
+    sprite.setAttribute("src", "https://thumbs.gfycat.com/PowerlessOpulentDutchshepherddog.webp");
     updateValues();
 };
 
@@ -262,12 +262,12 @@ let images = document.createElement("div");
 let sprite = document.createElement("img");
     sprite.id = "sprite";
     sprite.className = "image";
-    sprite.setAttribute("src", "img/Snail egg.gif");
+    sprite.setAttribute("src", "https://thumbs.gfycat.com/PowerlessOpulentDutchshepherddog.webp");
     images.appendChild(sprite);
 let action = document.createElement("img");
     action.id = "action";
     action.className = "image";
-    action.setAttribute("src", "img/Transparent 2.png");
+    action.setAttribute("src", "https://thumbs.gfycat.com/SophisticatedWelltodoBluetonguelizard.webp");
     images.appendChild(action);
 
 //Buttons
