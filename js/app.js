@@ -81,15 +81,46 @@ class Tamagotchi {
     // Add clean, buy meds, make money??
 };
 
-// Stored locations for DOMs
-    //Attributes
-// let hungerNum = document.querySelector("#hunger");
-// let sleepinessNum = document.querySelector("#sleepiness");
-// let boredomNum = document.querySelector("#boredom");
-// let ageNum = document.querySelector("#age");
-// let namer = document.getElementById("values");
+//Dom elements
+let namer = document.createElement("h2");
+    namer.id = "name";
+    namer.textContent = "Name";
+    document.body.appendChild(namer);
 
-// console.log(namer);
+
+let attributes = document.createElement("section");
+    attributes.id = "attributes";
+    document.body.appendChild(attributes);
+
+let hungerNum = document.createElement("p");
+    hungerNum.id = "hunger";
+    hungerNum.className = "attribute";
+    hungerNum.textContent = ("Hunger: 0");
+    attributes.appendChild(hungerNum);
+
+let sleepinessNum = document.createElement("p");
+    sleepinessNum.id = "sleepiness";
+    sleepinessNum.className = "attribute";
+    sleepinessNum.textContent = ("Sleepiness: 0");
+    attributes.appendChild(sleepinessNum);
+
+let boredomNum = document.createElement("p");
+    boredomNum.id = "boredom";
+    boredomNum.className = "attribute";
+    boredomNum.textContent = ("Boredom: 0");
+    attributes.appendChild(boredomNum);
+
+let ageNum = document.createElement("p");
+    ageNum.id = "age";
+    ageNum.className = "attribute";
+    ageNum.textContent = ("Age: 0");
+    attributes.appendChild(ageNum);
+
+// Update Values
+
+const updateValues = () => {
+    hungerNum.textContent = ("Hunger: " + tama1.hunger);
+};
 
 
 //Test Tamagotchi + Name input
@@ -102,17 +133,17 @@ console.log("connected?");
 const startGame = () => {
     let nameThis = prompt("What's my name?");
     tama1 = new Tamagotchi(nameThis);
-    // namer.textContent = nameThis;
+    namer.textContent = nameThis;
     timeElapsed();
 };
 
 
 //Display
-const updateValues = () => {
-    //Hunger
-    let textHunger = ("Hunger: " + tama1.hunger);
-    hungerNum.textContent = textHunger;
-};
+// const updateValues = () => {
+//     //Hunger
+//     let textHunger = ("Hunger: " + tama1.hunger);
+//     hungerNum.textContent = textHunger;
+// };
 
 //setTimeOut or setInterval or maybe just for loop?
 
@@ -132,6 +163,7 @@ const timePassing = () => {
     if (time % 10 === 0) {
         tama1.getBored();
         tama1.getHungry();
+        updateValues();
     }
     if (time % 20 === 0) {
         tama1.getSleepy();
