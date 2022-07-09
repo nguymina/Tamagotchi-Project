@@ -56,18 +56,18 @@ class Tamagotchi {
         this.hunger = 0;
         this.sleepiness = 0;
         this.boredom = 0;
-        //Maybe add bladder + sickness + money gain
+        this.sprite = "img/Snail egg.gif";
     };
     
     eatUp () {
         this.hunger -= 1;
+
     };
     getHungry () {
         this.hunger += 1;
     };
     sleepPls () {
         this.sleepiness = 0;
-        //add something to increment the decrease once time cycle is created
     };
     getSleepy () {
         this.sleepiness += 1;
@@ -81,11 +81,98 @@ class Tamagotchi {
     // Add clean, buy meds, make money??
 };
 
+
+//Test Tamagotchi + Name input
+
+console.log("connected?");
+// let tama1 = new Tamagotchi("tama1");
+// console.log (tama1)
+
+//Start Game
+const startGame = () => {
+    let nameThis = prompt("What's my name?");
+    tama1 = new Tamagotchi(nameThis);
+    namer.textContent = nameThis;
+    timeElapsed();
+};
+
+// Update Values
+
+const updateValues = () => {
+    hungerNum.textContent = ("Hunger: " + tama1.hunger);
+    sleepinessNum.textContent = ("Sleepiness: " + tama1.sleepiness);
+    boredomNum.textContent = ("Boredom: " + tama1.boredom);
+    ageNum.textContent = ("Age: " + tama1.age);
+};
+
+//Timer
+let time = 0;
+
+const timeElapsed = () => {
+    setInterval(() =>{
+        time ++
+        console.log(time);
+        console.log(tama1);
+        timePassing();
+    }, 1000);
+};
+
+const timePassing = () => {
+    //Increase values based on time
+    if (time % 2 === 0) {
+        tama1.getBored();
+        tama1.getHungry();
+        updateValues();
+    }
+    if (time % 3 === 0) {
+        tama1.getSleepy();
+        updateValues();
+    };
+
+    //Stages of growth
+    if (time === 20) {
+        tama1.age = "Child";
+        tama1.sprite = "img/Child snail.gif";
+        updateValues();
+        sprite.setAttribute("src", "img/Child snail.gif");
+    }
+    if (time === 30) {
+        tama1.age = "Teenager";
+        tama1.sprite = "img/Teen snail.gif";
+        updateValues();
+        sprite.setAttribute("src", "img/Teen snail.gif");
+    }
+    if (time === 60) {
+        tama1.age = "Adult";
+        tama1.sprite = "img/Adult Snail.gif";
+        updateValues();
+        sprite.setAttribute("src", "img/Adult Snail.gif");
+    };
+    if (time === 120) {
+        tama1.age = "Died of old age";
+        tama1.sprite = "img/Snail egg.gif";
+        updateValues();
+        alert("Your pet died of old age, but left an egg!");
+        sprite.setAttribute("src", "img/Snail egg.gif");
+        startGame();
+        //create Death + reset game function
+    };
+    
+};
+
+
+
 //Dom elements
 let namer = document.createElement("h2");
     namer.id = "name";
     namer.textContent = "Name";
     document.body.appendChild(namer);
+
+let startButt = document.createElement("button");
+    startButt.id = "Start";
+    startButt.textContent = "Start";
+    startButt.className = "Buttons";
+    startButt.addEventListener("click", startGame());
 
 //Attribute Display
 let attributes = document.createElement("section");
@@ -116,96 +203,27 @@ let ageNum = document.createElement("p");
     ageNum.textContent = ("Age: Egg");
     attributes.appendChild(ageNum);
 
-
 // Sprite
 let sprite = document.createElement("img");
     sprite.id = "sprite";
     sprite.setAttribute("src", "img/Snail egg.gif");
     document.body.appendChild(sprite);
+
 //Buttons
-
-
-// Update Values
-
-const updateValues = () => {
-    hungerNum.textContent = ("Hunger: " + tama1.hunger);
-    sleepinessNum.textContent = ("Sleepiness: " + tama1.sleepiness);
-    boredomNum.textContent = ("Boredom: " + tama1.boredom);
-    ageNum.textContent = ("Age: " + tama1.age);
-};
-
-
-
-//Test Tamagotchi + Name input
-
-console.log("connected?");
-// let tama1 = new Tamagotchi("tama1");
-// console.log (tama1)
-
-//Start Game
-const startGame = () => {
-    let nameThis = prompt("What's my name?");
-    tama1 = new Tamagotchi(nameThis);
-    namer.textContent = nameThis;
-    timeElapsed();
-};
-
-
-
-//setTimeOut or setInterval or maybe just for loop?
-
-let time = 0;
-
-const timeElapsed = () => {
-    setInterval(() =>{
-        time ++
-        console.log(time);
-        console.log(tama1);
-        timePassing();
-    }, 1000);
-};
-
-const timePassing = () => {
-    //Increase values based on time
-    if (time % 10 === 0) {
-        tama1.getBored();
-        tama1.getHungry();
-        updateValues();
-    }
-    if (time % 20 === 0) {
-        tama1.getSleepy();
-        updateValues();
-    };
-
-    //Stages of growth
-    if (time === 20) {
-        tama1.age = "Child";
-        updateValues();
-        sprite.setAttribute("src", "img/Child snail.gif");
-    }
-    if (time === 30) {
-        tama1.age = "Teenager";
-        updateValues();
-        sprite.setAttribute("src", "img/Teen snail.gif");
-    }
-    if (time === 60) {
-        tama1.age = "Adult";
-        updateValues();
-        sprite.setAttribute("src", "img/Adult Snail.gif");
-    };
-    if (time === 90) {
-        tama1.age = "Died of old age";
-        updateValues();
-        alert("Your pet died of old age, but left an egg!");
-        startGame();
-        //create Death + reset game function
-    };
-    
-};
-
-
-
-// setInterval only works passes one function, so multiple set interval functions are needed
+let buttons = document.createElement("section");
+    buttons.id = "Buttons";
+        // let eatButt = document.createElement("button");
+        //     eatButt.id = "Eat";
+        //     eatButt.className = "Buttons";
+        //     buttons.appendChild(hungerButt);
+        // let hungerButt = document.createElement("button");
+        //     hungerButt.id = "HungerButt";
+        //     hungerButt.className = "Buttons";
+        //     buttons.appendChild(hungerButt);
+        // let hungerButt = document.createElement("button");
+        //     hungerButt.id = "HungerButt";
+        //     hungerButt.className = "Buttons";
+        //     buttons.appendChild(hungerButt);
 
 
 
