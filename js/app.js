@@ -59,7 +59,7 @@ class Tamagotchi {
         this.sprite = "img/Snail egg.gif";
     };
     returnOriSprite () {
-        action.setAttribute("src", null);
+        action.setAttribute("src", "img/Transparent 2.png");
     }
     eatUp () {
         this.hunger = 0;
@@ -71,7 +71,7 @@ class Tamagotchi {
     };
     sleepPls () {
         this.sleepiness = 0;
-        action.setAttribute("src", "img/Sleep.gif");
+        action.setAttribute("src", "img/Sleep .gif");
         setTimeout(this.returnOriSprite, 1990);
     };
     getSleepy () {
@@ -149,7 +149,7 @@ const timePassing = () => {
             alert("Your snail died of starvation!");
             resetGame();
         };
-        if(tama1.boredom === 20) {
+        if(tama1.boredom === 15) {
             alert("Your snail got restless and decided to pursue its dreams without you!");
             resetGame();
         }
@@ -201,6 +201,7 @@ const resetGame = () => {
     clearInterval(timer);
     time = 0;
     //Reset Object
+    namer.textContent = "";
     tama1.age = "Egg";
     tama1.hunger = 0;
     tama1.sleepiness = 0;
@@ -215,7 +216,7 @@ const resetGame = () => {
 //Dom elements
 let namer = document.createElement("h2");
     namer.id = "name";
-    namer.textContent = "Name";
+    namer.textContent = "";
     document.body.appendChild(namer);
 
 let startButt = document.createElement("button");
@@ -230,25 +231,25 @@ let attributes = document.createElement("section");
     attributes.id = "attributes";
     document.body.appendChild(attributes);
 
-let hungerNum = document.createElement("p");
+let hungerNum = document.createElement("div");
     hungerNum.id = "hunger";
     hungerNum.className = "attribute";
     hungerNum.textContent = ("Hunger: 0");
     attributes.appendChild(hungerNum);
 
-let sleepinessNum = document.createElement("p");
+let sleepinessNum = document.createElement("div");
     sleepinessNum.id = "sleepiness";
     sleepinessNum.className = "attribute";
     sleepinessNum.textContent = ("Sleepiness: 0");
     attributes.appendChild(sleepinessNum);
 
-let boredomNum = document.createElement("p");
+let boredomNum = document.createElement("div");
     boredomNum.id = "boredom";
     boredomNum.className = "attribute";
     boredomNum.textContent = ("Boredom: 0");
     attributes.appendChild(boredomNum);
 
-let ageNum = document.createElement("p");
+let ageNum = document.createElement("div");
     ageNum.id = "age";
     ageNum.className = "attribute";
     ageNum.textContent = ("Age: Egg");
@@ -266,6 +267,7 @@ let sprite = document.createElement("img");
 let action = document.createElement("img");
     action.id = "action";
     action.className = "image";
+    action.setAttribute("src", "img/Transparent 2.png");
     images.appendChild(action);
 
 //Buttons
