@@ -58,27 +58,38 @@ class Tamagotchi {
         this.boredom = 0;
         this.sprite = "img/Snail egg.gif";
     };
-    
+    returnOriSprite () {
+        action.setAttribute("src", null);
+    }
     eatUp () {
-        this.hunger -= 1;
-
+        this.hunger = 0;
+        action.setAttribute("src", "img/Eating.gif");
+        setTimeout(this.returnOriSprite, 1990);
     };
     getHungry () {
         this.hunger += 1;
     };
     sleepPls () {
         this.sleepiness = 0;
+        action.setAttribute("src", "img/Sleep.gif");
+        setTimeout(this.returnOriSprite, 1990);
     };
     getSleepy () {
         this.sleepiness += 1;
     };
     playBall () {
-        this.boredom -= 1;
+        this.boredom = 0;
+        action.setAttribute("src", "img/Play.gif");
+        setTimeout(this.returnOriSprite, 1990);
     };
     getBored () {
         this.boredom += 1;
     };
-    // Add clean, buy meds, make money??
+
+    //addEventListener needs this step to invoke object methods
+    eat = this.eatUp.bind(this);
+    sleep = this.sleepPls.bind(this);
+    play = this.playBall.bind(this)
 };
 
 
@@ -89,13 +100,22 @@ console.log("connected?");
 // console.log (tama1)
 
 //Start Game
+
+tama1 = new Tamagotchi("Name");
+
 const startGame = () => {
     let nameThis = prompt("What's my name?");
-    tama1 = new Tamagotchi(nameThis);
+    tama1.name = nameThis;
     namer.textContent = nameThis;
+    startButt.textContent = "Reset";
     timeElapsed();
+    startStatus = resetGame;
 };
 
+let startStatus = startGame;
+const changeStartButt = () => {
+    startStatus();
+};
 // Update Values
 
 const updateValues = () => {
@@ -107,9 +127,10 @@ const updateValues = () => {
 
 //Timer
 let time = 0;
+let timer = null;
 
 const timeElapsed = () => {
-    setInterval(() =>{
+        timer = setInterval(() =>{
         time ++
         console.log(time);
         console.log(tama1);
@@ -124,10 +145,22 @@ const timePassing = () => {
         tama1.getHungry();
         updateValues();
     }
+        if(tama1.hunger === 10) {
+            alert("Your snail died of starvation!");
+            resetGame();
+        };
+        if(tama1.boredom === 20) {
+            alert("Your snail got restless and decided to pursue its dreams without you!");
+            resetGame();
+        }
     if (time % 3 === 0) {
         tama1.getSleepy();
         updateValues();
     };
+        if(tama1.sleepiness === 10) {
+            alert("Your snail went insane from lack of sleep!");
+            resetGame();
+        }
 
     //Stages of growth
     if (time === 20) {
@@ -153,11 +186,28 @@ const timePassing = () => {
         tama1.sprite = "img/Snail egg.gif";
         updateValues();
         alert("Your pet died of old age, but left an egg!");
-        sprite.setAttribute("src", "img/Snail egg.gif");
-        startGame();
+        resetGame();
         //create Death + reset game function
     };
     
+};
+
+//Reset Game
+const resetGame = () => {
+    //Reset Start Button
+    startStatus = startGame;
+    startButt.textContent = "Start";
+    //Reset Time
+    clearInterval(timer);
+    time = 0;
+    //Reset Object
+    tama1.age = "Egg";
+    tama1.hunger = 0;
+    tama1.sleepiness = 0;
+    tama1.boredom = 0;
+    tama1.sprite = "img/Snail egg.gif";
+    sprite.setAttribute("src", "img/Snail egg.gif");
+    updateValues();
 };
 
 
@@ -172,7 +222,8 @@ let startButt = document.createElement("button");
     startButt.id = "Start";
     startButt.textContent = "Start";
     startButt.className = "Buttons";
-    startButt.addEventListener("click", startGame());
+    let switchStart = startButt.addEventListener("click", changeStartButt);
+    document.body.appendChild(startButt);
 
 //Attribute Display
 let attributes = document.createElement("section");
@@ -204,27 +255,41 @@ let ageNum = document.createElement("p");
     attributes.appendChild(ageNum);
 
 // Sprite
+let images = document.createElement("div");
+    images.id = "images";
+    document.body.appendChild(images);
 let sprite = document.createElement("img");
     sprite.id = "sprite";
+    sprite.className = "image";
     sprite.setAttribute("src", "img/Snail egg.gif");
-    document.body.appendChild(sprite);
+    images.appendChild(sprite);
+let action = document.createElement("img");
+    action.id = "action";
+    action.className = "image";
+    images.appendChild(action);
 
 //Buttons
 let buttons = document.createElement("section");
     buttons.id = "Buttons";
-        // let eatButt = document.createElement("button");
-        //     eatButt.id = "Eat";
-        //     eatButt.className = "Buttons";
-        //     buttons.appendChild(hungerButt);
-        // let hungerButt = document.createElement("button");
-        //     hungerButt.id = "HungerButt";
-        //     hungerButt.className = "Buttons";
-        //     buttons.appendChild(hungerButt);
-        // let hungerButt = document.createElement("button");
-        //     hungerButt.id = "HungerButt";
-        //     hungerButt.className = "Buttons";
-        //     buttons.appendChild(hungerButt);
-
+        let eatButt = document.createElement("button");
+            eatButt.id = "Eat";
+            eatButt.className = "Buttons";
+            eatButt.textContent = "Eat";
+            eatButt.addEventListener("click", tama1.eat);
+            buttons.appendChild(eatButt);
+        let sleepButt = document.createElement("button");
+            sleepButt.id = "sleepButt";
+            sleepButt.className = "Buttons";
+            sleepButt.textContent = "Sleep";
+            sleepButt.addEventListener("click", tama1.sleep);
+            buttons.appendChild(sleepButt);
+        let playButt = document.createElement("button");
+            playButt.id = "playButt";
+            playButt.className = "Buttons";
+            playButt.textContent = "Play";
+            playButt.addEventListener("click", tama1.play);
+            buttons.appendChild(playButt);
+    document.body.appendChild(buttons);
 
 
 
