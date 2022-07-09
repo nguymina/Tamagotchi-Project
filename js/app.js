@@ -59,11 +59,11 @@ class Tamagotchi {
         this.sprite = "img/Snail egg.gif";
     };
     returnOriSprite () {
-        action.setAttribute("src", "img/Transparent 2.png");
+        action.setAttribute("src", "https://gfycat.com/sophisticatedwelltodobluetonguelizard");
     }
     eatUp () {
         this.hunger = 0;
-        action.setAttribute("src", "img/Eating.gif");
+        action.setAttribute("src", "https://gfycat.com/lawfulsereneflamingo");
         setTimeout(this.returnOriSprite, 1990);
     };
     getHungry () {
@@ -71,7 +71,7 @@ class Tamagotchi {
     };
     sleepPls () {
         this.sleepiness = 0;
-        action.setAttribute("src", "img/Sleep .gif");
+        action.setAttribute("src", "https://gfycat.com/mealybowedbuck");
         setTimeout(this.returnOriSprite, 1990);
     };
     getSleepy () {
@@ -79,7 +79,7 @@ class Tamagotchi {
     };
     playBall () {
         this.boredom = 0;
-        action.setAttribute("src", "img/Play.gif");
+        action.setAttribute("src", "https://gfycat.com/plumpultimateclingfish");
         setTimeout(this.returnOriSprite, 1990);
     };
     getBored () {
@@ -167,19 +167,19 @@ const timePassing = () => {
         tama1.age = "Child";
         tama1.sprite = "img/Child snail.gif";
         updateValues();
-        sprite.setAttribute("src", "img/Child snail.gif");
+        sprite.setAttribute("src", "https://gfycat.com/raggedblankbadger");
     }
     if (time === 30) {
         tama1.age = "Teenager";
         tama1.sprite = "img/Teen snail.gif";
         updateValues();
-        sprite.setAttribute("src", "img/Teen snail.gif");
+        sprite.setAttribute("src", "https://gfycat.com/questionablewideeyedhoatzin");
     }
     if (time === 60) {
         tama1.age = "Adult";
         tama1.sprite = "img/Adult Snail.gif";
         updateValues();
-        sprite.setAttribute("src", "img/Adult Snail.gif");
+        sprite.setAttribute("src", "https://gfycat.com/constantdefenselessdwarfmongoose");
     };
     if (time === 120) {
         tama1.age = "Died of old age";
@@ -207,7 +207,7 @@ const resetGame = () => {
     tama1.sleepiness = 0;
     tama1.boredom = 0;
     tama1.sprite = "img/Snail egg.gif";
-    sprite.setAttribute("src", "img/Snail egg.gif");
+    sprite.setAttribute("src", "https://gfycat.com/powerlessopulentdutchshepherddog");
     updateValues();
 };
 
